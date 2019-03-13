@@ -18,7 +18,7 @@ const API_STRS = [
 //from the unsplash api 
 
 function UpdateBgi() {
-  let API_STR = API_STRS[Math.floor(Math.random() * API_STRS.length)]
+  let API_STR = API_STRS[Math.floor(Math.random() * API_STRS.length)] + window.innerWidth + 'x' + window.innerHeight;
   fetch(API_STR, {
     redirect: 'follow'
   }).then((res) => {
@@ -53,3 +53,19 @@ function setBgi(url) {
     setBgi(bg_obj.url);
   }
 })();
+
+//Capturing two key presses of letter R(keycode 82)
+//if time delta between two presses is less than 300 ms
+//we will update and set current background image
+let ts = 1000;
+document.addEventListener('keydown', (e) => {
+  let ts_delta = Math.floor(e.timeStamp) - ts;
+  if (e.keyCode == 82 && ts_delta < 300) {
+    UpdateBgi();
+    bg_str = localStorage.getItem('bg_obj');
+    let bg_obj = JSON.parse(bg_str);
+    setBgi(bg_obj.url);
+  } else if (e.keyCode == 82) {
+    ts = Math.floor(e.timeStamp);
+  }
+});

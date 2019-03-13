@@ -1,5 +1,5 @@
 //OpenWeatheMap api url & key
-API_KEY = ''; //api key goes here
+API_KEY = '84d89182eabe041d88c2a0cd0ad03ff6'; //api key goes here
 API_URL = 'https://api.openweathermap.org/data/2.5/weather';
 
 // Date and time related stuff
