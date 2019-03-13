@@ -1,0 +1,10 @@
+{
+  "name": "Flextab",
+  "version": "1.0",
+  "description": "51ck",
+  "manifest_version": 2,
+  "permissions": ["geolocation"],
+  "chrome_url_overrides": {
+    "newtab": "myPage.html"
+  }
+}
