@@ -2,9 +2,6 @@
 const API_KEY = '84d89182eabe041d88c2a0cd0ad03ff6';
 const API_URL = 'https://api.openweathermap.org/data/2.5/weather';
 
-const sec = 1000;
-const min = 60 * sec;
-
 function $(selector){
   return document.querySelector(selector);
 }
