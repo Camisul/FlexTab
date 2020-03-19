@@ -17,25 +17,22 @@ const API_STRS = [
   'https://source.unsplash.com/collection/827743/'
 ]
 
-//redirect: follow is important
-//otherwies  we can't get actual image location
-//from the unsplash api 
 function selectCollection() {
   const selected = API_STRS[Math.floor(Math.random() * API_STRS.length)];
-  const {innerHeight, innerWidth} = window;
+  const { innerHeight, innerWidth } = window;
   return selected + `${innerWidth}x${innerHeight}`;
 }
 
-function UpdateBg(){
+function UpdateBg() {
   return new Promise((resolve, reject) => {
-    fetch(selectCollection(), {redirect: 'follow'})
-    .then((res) => {
-      localStorage.setItem('background', JSON.stringify({
-        dt: +new Date(),
-        url: res.url,
-      }));
-      resolve(res.url);
-    });
+    fetch(selectCollection(), { redirect: 'follow' })
+      .then((res) => {
+        localStorage.setItem('background', JSON.stringify({
+          dt: +new Date(),
+          url: res.url,
+        }));
+        resolve(res.url);
+      });
   })
 }
 
@@ -46,7 +43,7 @@ function setBg(url) {
 (() => {
   const bg = JSON.parse(localStorage.getItem('background'));
   if (bg) {
-    if(((new Date()) - bg.dt) > 10 * min) UpdateBg().then(setBg);
+    if (((new Date()) - bg.dt) > 10 * min) UpdateBg().then(setBg);
     setBg(bg.url);
   } else {
     UpdateBg().then(setBg);
@@ -54,7 +51,7 @@ function setBg(url) {
 })();
 
 document.addEventListener('keydown', (e) => {
-  if(e.keyCode === 82 && e.ctrlKey){
+  if (e.keyCode === 82 && e.ctrlKey) {
     e.preventDefault();
     const cacheUrl = document.body.style.background;
     document.body.style = `
@@ -71,6 +68,9 @@ document.addEventListener('keydown', (e) => {
             *               *
             *****************
 
+//redirect: follow is important
+//otherwies  we can't get actual image location
+//from the unsplash api
 function UpdateBgi() {
   let API_STR =  + window.innerWidth + 'x' + window.innerHeight;
    fetch(API_STR, {
@@ -85,7 +85,7 @@ function UpdateBgi() {
      localStorage.setItem('bg_obj', JSON.stringify(jobj));
    })
  }
- 
+
 (function () {
 
   let bg_str = localStorage.getItem('bg_obj');
